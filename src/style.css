@@ -1,0 +1,116 @@
+:root {
+  color-scheme: dark;
+  --bg: #06070d;
+  --ink: #8d93b5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+#screen {
+  display: block;
+  width: min(100%, calc((100vh - 90px) * 4 / 3));
+  aspect-ratio: 4 / 3;
+  height: auto;
+  background: #000;
+  border: 2px solid #2b3157;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px #0b0d18, 0 18px 50px rgba(0, 0, 0, 0.75);
+  touch-action: none;
+  cursor: default;
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  text-align: center;
+}
+
+/* --- タッチ操作（狭い画面のみ表示） --- */
+#touch {
+  display: none;
+  width: min(100%, 560px);
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+#touch:not([hidden]) {
+  display: flex;
+}
+
+#touch button {
+  background: #171c33;
+  color: #cfd5f5;
+  border: 2px solid #39406e;
+  border-radius: 10px;
+  font: 600 18px/1 'Yu Gothic UI', system-ui, sans-serif;
+  width: 54px;
+  height: 54px;
+  touch-action: none;
+}
+
+#touch button:active {
+  background: #2b3260;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 54px);
+  grid-template-rows: repeat(3, 54px);
+  gap: 4px;
+}
+
+.dpad [data-key='up'] {
+  grid-area: 1 / 2;
+}
+.dpad [data-key='left'] {
+  grid-area: 2 / 1;
+}
+.dpad [data-key='right'] {
+  grid-area: 2 / 3;
+}
+.dpad [data-key='down'] {
+  grid-area: 3 / 2;
+}
+
+.acts {
+  display: flex;
+  gap: 12px;
+}
+
+.acts button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+@media (max-width: 820px), (pointer: coarse) {
+  .hint {
+    display: none;
+  }
+}
